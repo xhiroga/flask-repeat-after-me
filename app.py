@@ -9,10 +9,10 @@ def hello():
 def any(any):
     return make_response(request)
 
-def make_response(request_obj):
-    res = request_obj.url + "\t" + "\n".join([": ".join(header) for header in request_obj.headers.to_wsgi_list()]) + "\t" + request_obj.data.decode(encoding='utf-8')
+def make_response(req):
+    res = req.url + "\n\n" + "\n".join([": ".join(header) for header in req.headers.to_wsgi_list()]) + "\n\n" + req.data.decode(encoding='utf-8')
     print(res)
-    return res.replace("\t", "<p>").replace("\n", "<br>")
+    return res.replace("\n\n", "<p>").replace("\n", "<br>")
 
 if __name__ == "__main__":
     print("⚡️⚡️⚡️ Flask launch! ⚡️⚡️⚡️")
