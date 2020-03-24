@@ -1,10 +1,12 @@
 from flask import Flask, request
+from werkzeug.routing import Rule
 
 app = Flask(__name__)
+app.url_map.add(Rule('/', defaults={'any': ''},endpoint='index'))
+app.url_map.add(Rule('/<path:any>', endpoint='any'))
 
-
-@app.route("/", defaults={'any': ''})
-@app.route("/<path:any>")
+@app.endpoint('index')
+@app.endpoint('any')
 def route(any):
     return make_response(request)
 
