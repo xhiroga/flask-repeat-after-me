@@ -3,13 +3,9 @@ from flask import Flask, request
 app = Flask(__name__)
 
 
-@app.route("/", methods=['GET', 'POST'])
-def route():
-    return make_response(request)
-
-
-@app.route("/<any>", methods=['GET', 'POST'])
-def any(any):
+@app.route("/", defaults={'any': ''})
+@app.route("/<path:any>")
+def route(any):
     return make_response(request)
 
 
