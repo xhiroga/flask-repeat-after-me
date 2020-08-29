@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request
 from werkzeug.routing import Rule
 
@@ -38,4 +40,4 @@ def make_response(req):
 
 if __name__ == "__main__":
     print("⚡️⚡️⚡️ Flask launch! ⚡️⚡️⚡️")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=os.environ.get("PORT", 5000), debug=True)
