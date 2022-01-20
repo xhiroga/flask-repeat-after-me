@@ -17,7 +17,7 @@ def route(any):
 def make_response(req: request):
     headers = "\n".join([": ".join(header) for header in req.headers.to_wsgi_list()])
     body = req.data.decode(encoding="utf-8")
-    form = req.form
+    form = req.form.to_dict()
     res = f"""# URL
 {req.url}
 
@@ -26,6 +26,9 @@ def make_response(req: request):
 
 # Body
 {body}
+
+# Form
+{form}
 
 # Referrer
 {req.referrer}
